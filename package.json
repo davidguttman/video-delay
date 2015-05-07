@@ -1,0 +1,25 @@
+{
+  "name": "video-delay",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "beefy index.js",
+    "deploy": "npm run build && surge public",
+    "build": "browserify index.js | uglifyjs -mc > public/main.js"
+  },
+  "author": "David Guttman <david@guttman.io> (http://davidguttman.com/)",
+  "license": "MIT",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "attachmediastream": "^1.2.0",
+    "beefy": "^2.1.5",
+    "browserify": "^10.1.0",
+    "getusermedia": "^1.2.1",
+    "raf": "^2.0.4"
+  },
+  "devDependencies": {
+    "surge": "^0.11.1",
+    "uglify-js": "^2.4.21"
+  }
+}
