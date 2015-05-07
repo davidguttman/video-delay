@@ -33,7 +33,7 @@ var ctx = canvas.getContext('2d')
 var ctxBuffer = bufferCanvas.getContext('2d')
 
 var timeStart
-var timeReady = Inf
+var timeReady
 
 getusermedia({video: true, audio: false}, function(err, stream) {
   if (err) return console.error(err)
@@ -41,9 +41,31 @@ getusermedia({video: true, audio: false}, function(err, stream) {
   attachMediaStream(stream, video)
   videoLoop()
 
-  setTimeout(function() {
-    delayFinished = true
-  }, delayTime)
+  timeStart = Date.now()
+  timeReady = timeStart + delayTime
+
+  var timer = document.createElement('div')
+  timer.style.position = 'absolute'
+  timer.style.top = '40%'
+  timer.style.fontSize = '300%'
+  timer.style.color = 'white'
+  timer.style.fontFamily = 'helvetica'
+  timer.style.textAlign = 'center'
+  timer.style.width = '100%'
+
+  document.body.appendChild(timer)
+
+  var interval = setInterval(function() {
+    var now = Date.now()
+    if (now >= timeReady) {
+      delayFinished = true
+      timer.parentElement.removeChild(timer)
+      clearInterval(interval)
+    } else {
+      var s = Math.ceil((timeReady - now)/1000)
+      timer.innerHTML = 'Video in ' + s + ' seconds'
+    }
+  }, 1000)
 })
 
 function videoLoop () {
