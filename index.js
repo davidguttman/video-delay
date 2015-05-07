@@ -17,12 +17,17 @@ document.body.appendChild(video)
 video.style.position = 'absolute'
 video.style.top = 0
 video.style.left = 0
-video.style.height = '10%'
+video.style.height = '100%'
+video.style.opacity = 0.5
 
 var canvas = document.createElement('canvas')
 canvas.width = 640
 canvas.height = 480
+canvas.style.position = 'absolute'
+canvas.style.top = 0
+canvas.style.left = 0
 canvas.style.height = '100%'
+canvas.style.opacity = 0.5
 document.body.appendChild(canvas)
 
 var bufferCanvas = document.createElement('canvas')
